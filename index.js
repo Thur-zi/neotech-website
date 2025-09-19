@@ -132,13 +132,29 @@ app.post('/api/comprar', async (req, res) => {
 
 // --- ROTAS DE ADMIN ---
 
+// ***** ROTA DE VENDAS CORRIGIDA E MELHORADA *****
 app.get('/api/vendas', async (req, res) => {
     try {
-        const vendasResult = await pool.query('SELECT * FROM vendas ORDER BY data DESC');
+        const vendasQuery = `
+            SELECT v.produto, v.preco, v.data, u.nome AS comprador
+            FROM vendas AS v
+            JOIN users AS u ON v.comprador_email = u.email
+            ORDER BY v.data DESC
+        `;
+        const vendasResult = await pool.query(vendasQuery);
+
         const totalResult = await pool.query('SELECT SUM(preco) as total FROM vendas');
-        res.json({ status: 'sucesso', vendas: vendasResult.rows, totalVendido: parseFloat(totalResult.rows[0].total) || 0 });
+
+        let totalVendido = 0;
+        if (totalResult.rows.length > 0 && totalResult.rows[0].total !== null) {
+            totalVendido = parseFloat(totalResult.rows[0].total);
+        }
+
+        res.json({ status: 'sucesso', vendas: vendasResult.rows, totalVendido: totalVendido });
+
     } catch (error) {
-        res.status(500).json({ status: 'erro', mensagem: 'Ocorreu um erro ao ler o histórico de vendas.' });
+        console.error('Erro ao ler o histórico de vendas:', error);
+        res.status(500).json({ status: 'erro', mensagem: 'Ocorreu um erro no servidor ao ler o histórico de vendas.' });
     }
 });
 
@@ -157,7 +173,6 @@ app.post('/api/resetar-vendas', async (req, res) => {
     }
 });
 
-// ******** NOVA ROTA DE ADMIN PARA LISTAR UTILIZADORES ********
 app.get('/api/utilizadores', async (req, res) => {
     try {
         const result = await pool.query('SELECT id, nome, email, limite_cartao, saldo_cartao FROM users ORDER BY id ASC');
