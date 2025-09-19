@@ -1,43 +1,63 @@
-// --- LÓGICA DO PAINEL DE ADMINISTRAÇÃO ---
+// --- VERSÃO FINAL E CORRIGIDA DO ADMIN.JS ---
 
 window.addEventListener('load', () => {
+    // Referências aos elementos da página
     const listaVendas = document.getElementById('lista-vendas');
     const botaoResetar = document.getElementById('botao-resetar');
-    const totalVendasEl = document.getElementById('total-vendas'); // Pega o novo h3 do total
+    const totalVendasEl = document.getElementById('total-vendas');
+    const tabelaUtilizadoresBody = document.querySelector('#tabela-utilizadores tbody');
 
-    // Função para buscar e mostrar as vendas E O TOTAL
+    // Função para buscar e mostrar as VENDAS
     function carregarVendas() {
         fetch('/api/vendas')
             .then(response => response.json())
             .then(data => {
-                listaVendas.innerHTML = ''; // Limpa a lista atual
-
+                listaVendas.innerHTML = '';
                 if (data.vendas.length === 0) {
                     listaVendas.innerHTML = '<li>Nenhuma venda encontrada.</li>';
                 } else {
-                    // Cria um item de lista (<li>) para cada venda
                     data.vendas.forEach(venda => {
                         const item = document.createElement('li');
                         const dataFormatada = new Date(venda.data).toLocaleString('pt-BR');
-                        item.textContent = `Comprador: ${venda.comprador} | Produto: ${venda.produto} | Preço: R$ ${venda.preco.toFixed(2)} | Data: ${dataFormatada}`;
+                        // --- CORREÇÃO APLICADA AQUI ---
+                        item.textContent = `Comprador: ${venda.comprador} | Produto: ${venda.produto} | Preço: R$ ${parseFloat(venda.preco).toFixed(2)} | Data: ${dataFormatada}`;
                         listaVendas.appendChild(item);
                     });
                 }
-
-                // ATUALIZA O TOTAL NA PÁGINA com o valor que veio da API
                 totalVendasEl.textContent = `Total Vendido: R$ ${data.totalVendido.toFixed(2)}`;
             })
             .catch(error => {
                 console.error("Erro ao carregar vendas:", error);
-                listaVendas.innerHTML = '<li>Ocorreu um erro ao carregar as vendas.</li>';
+                listaVendas.innerHTML = `<li>Ocorreu um erro ao carregar as vendas.</li>`;
                 totalVendasEl.textContent = 'Total Vendido: Erro';
             });
     }
 
-    // Lógica do botão de resetar (continua a mesma)
-    botaoResetar.addEventListener('click', () => {
-        const senha = prompt("Por favor, insira a senha de administrador para resetar as vendas:");
+    // Função para buscar e mostrar os UTILIZADORES
+    function carregarUtilizadores() {
+        fetch('/api/utilizadores')
+            .then(response => response.json())
+            .then(data => {
+                tabelaUtilizadoresBody.innerHTML = '';
+                if (data.status === 'sucesso') {
+                    data.utilizadores.forEach(user => {
+                        const linha = document.createElement('tr');
+                        linha.innerHTML = `
+                            <td>${user.id}</td>
+                            <td>${user.nome}</td>
+                            <td>${user.email}</td>
+                            <td>${parseFloat(user.saldo_cartao).toFixed(2)}</td>
+                        `;
+                        tabelaUtilizadoresBody.appendChild(linha);
+                    });
+                }
+            })
+            .catch(error => console.error("Erro ao carregar utilizadores:", error));
+    }
 
+    // Lógica do botão de resetar
+    botaoResetar.addEventListener('click', () => {
+        const senha = prompt("Por favor, insira a senha de administrador para resetar os dados:");
         if (senha !== null) {
             fetch('/api/resetar-vendas', {
                 method: 'POST',
@@ -48,16 +68,15 @@ window.addEventListener('load', () => {
             .then(data => {
                 alert(data.mensagem);
                 if (data.status === 'sucesso') {
-                    carregarVendas(); // Apenas chama a função de recarregar, que já atualiza tudo
+                    carregarVendas();
+                    carregarUtilizadores();
                 }
             })
-            .catch(error => {
-                console.error("Erro ao resetar:", error);
-                alert("Ocorreu um erro de comunicação ao tentar resetar.");
-            });
+            .catch(error => console.error("Erro ao resetar:", error));
         }
     });
 
-    // Carregar os dados assim que a página abrir
+    // Carregar os dados iniciais assim que a página abrir
     carregarVendas();
+    carregarUtilizadores();
 });
