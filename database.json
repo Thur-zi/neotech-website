@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "nome": "Arthur Gil",
+      "email": "arthurgil72@gmail.com",
+      "password": "abcdcb",
+      "cartao": {
+        "limite": 500,
+        "saldo": 500
+      }
+    },
+    {
+      "nome": "teste",
+      "email": "teste123@email.com",
+      "password": "abcdcb",
+      "cartao": {
+        "limite": 500,
+        "saldo": 500
+      }
+    },
+    {
+      "nome": "teste2",
+      "email": "teste2@email.com",
+      "password": "abcdb",
+      "cartao": {
+        "limite": 500,
+        "saldo": 500
+      }
+    },
+    {
+      "nome": "teste3",
+      "email": "teste3@email.com",
+      "password": "abcdcb",
+      "cartao": {
+        "limite": 500,
+        "saldo": 500
+      }
+    },
+    {
+      "nome": "teste4",
+      "email": "teste4@email.com",
+      "password": "abcdcb",
+      "cartao": {
+        "limite": 500,
+        "saldo": 500
+      }
+    },
+    {
+      "nome": "Paulin Silva do Grau",
+      "email": "flavindopneu@gmail.com",
+      "password": "Paulin@",
+      "cartao": {
+        "limite": 500,
+        "saldo": 500
+      }
+    }
+  ],
+  "vendas": []
+}

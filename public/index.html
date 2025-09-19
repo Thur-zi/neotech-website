@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoTech - Inovação ao seu alcance</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+
+    <header class="header-global">
+        <div class="logo">
+            <a href="/index.html">
+                <img src="/logo-neotech.jpeg" alt="Logo NeoTech">
+            </a>
+        </div>
+        <nav class="navegacao-principal">
+            <div id="links-usuario"></div>
+        </nav>
+    </header>
+
+    <main class="main-com-barra">
+        
+        <aside class="barra-lateral">
+            <div id="perfil-logado" style="display: none;">
+                <h3>Olá, <span id="nome-sidebar">...</span>!</h3>
+                <p><strong>Saldo:</strong> R$ <span id="saldo-sidebar">...</span></p>
+                <hr>
+                <a href="/perfil.html" class="link-botao-sidebar">Ver Perfil Completo</a>
+                <button id="logout-sidebar" class="botao-perigo">Logout</button>
+            </div>
+
+            <div id="perfil-deslogado">
+                <h3>Bem-vindo!</h3>
+                <p>Crie uma conta ou faça o login para começar a comprar.</p>
+                <a href="/login.html" class="link-botao-sidebar">Login</a>
+                <a href="/registro.html" class="link-botao-sidebar">Criar uma Conta</a>
+            </div>
+        </aside>
+
+        <section class="conteudo-principal">
+            <div class="aviso">
+                <p><strong>Atenção:</strong> Este é um site de uma empresa simulada, desenvolvido para um projeto universitário. Todos os produtos e preços são fictícios.</p>
+            </div>
+            <h2>Nossos Produtos</h2>
+            <p>Confira a nossa seleção de dispositivos eletrónicos pensados para facilitar o seu dia a dia.</p>
+            
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Produto</th>
+                            <th>Marca</th>
+                            <th>Preço</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-preco="275.25"><td><img src="/imagens/fone-jbl.jpeg" alt="Fones de ouvido" class="imagem-produto"></td><td>Fones de ouvido sem fio</td><td>JBL Wave Beam 2</td><td>R$ 275,25</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="899.00"><td><img src="/imagens/caixa-jbl.jpeg" alt="Caixa de Som" class="imagem-produto"></td><td>Caixa de Som Bluetooth</td><td>JBL Flip 7</td><td>R$ 899,00</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="449.00"><td><img src="/imagens/teclado.jpeg" alt="Teclado Mecânico" class="imagem-produto"></td><td>Teclado Mecânico SmartKey</td><td>Attack Shark X85pro</td><td>R$ 449,00</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="56.90"><td><img src="/imagens/mouse.jpeg" alt="Mouse Sem Fio" class="imagem-produto"></td><td>Mouse Sem Fio</td><td>Logitech M170</td><td>R$ 56,90</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="374.90"><td><img src="/imagens/hub.jpeg" alt="Hub USB-C" class="imagem-produto"></td><td>Hub USB-C NeoDock 7 em 1</td><td>Hub usb-c 5+</td><td>R$ 374,90</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="121.50"><td><img src="/imagens/powerbank.jpeg" alt="Carregador Portátil" class="imagem-produto"></td><td>Carregador Portátil</td><td>Basike Power Bank</td><td>R$ 121,50</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="169.90"><td><img src="/imagens/kit-youtuber.jpeg" alt="Kit Gravação" class="imagem-produto"></td><td>Kit Gravação</td><td>Kit Youtuber Dreamfull</td><td>R$ 169,90</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="629.00"><td><img src="/imagens/smartwhatch.jpeg" alt="Smartwatch" class="imagem-produto"></td><td>Smartwatch N-Life</td><td>Smartwatch mormaii life unissex</td><td>R$ 629,00</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="418.31"><td><img src="/imagens/camera.jpeg" alt="Câmera Polaroid" class="imagem-produto"></td><td>Câmera (polaroid)</td><td>CAMERA INSTAX MINI 12</td><td>R$ 418,31</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="188.32"><td><img src="/imagens/lampada.jpeg" alt="Lampada Smart" class="imagem-produto"></td><td>Lampada Smart</td><td>Kit Casa Conectada Positivo</td><td>R$ 188,32</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="457.90"><td><img src="/imagens/drone.jpeg" alt="Drone" class="imagem-produto"></td><td>Drone</td><td>Super RC</td><td>R$ 457,90</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="277.90"><td><img src="/imagens/kindle.jpeg" alt="Kindle" class="imagem-produto"></td><td>Kindle 8GB</td><td>Kindle</td><td>R$ 277,90</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="490.90"><td><img src="/imagens/projetor.jpeg" alt="Mini Projetor" class="imagem-produto"></td><td>Mini Projetor Portátil</td><td>Basike</td><td>R$ 490,90</td><td><button>Comprar</button></td></tr>
+                        <tr data-preco="557.00"><td><img src="/imagens/echo-alexa.jpeg" alt="Echo com Alexa" class="imagem-produto"></td><td>Echo com Alexa</td><td>Amazon</td><td>R$ 557,00</td><td><button>Comprar</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="rodape-principal">
+        <div class="rodape-conteudo">
+            <div class="rodape-secao">
+                <h4>Sobre a NeoTech</h4>
+                <p>Inovação ao seu alcance. Um projeto universitário para demonstrar as maravilhas da tecnologia e da programação.</p>
+            </div>
+            <div class="rodape-secao">
+                <h4>Contacto</h4>
+                <p><i class="fas fa-envelope"></i> email: neotechempresasimulada@gmail.com</p>
+                <p><i class="fas fa-phone"></i> tel: (31) 99999-9999</p>
+            </div>
+            <div class="rodape-secao">
+                <h4>Redes Sociais</h4>
+                <div class="redes-sociais">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/neotech.coreu/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="rodape-inferior">
+            &copy; 2025 NeoTech - Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script> 
+</body>
+</html>
